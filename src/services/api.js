@@ -1,4 +1,4 @@
-const BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:8000").replace(/\/+$/, "");
+const BASE = (import.meta.env.VITE_API_BASE_URL || "https://waste-collection-system.onrender.com").replace(/\/+$/, "");
 const TOKEN_KEY = "wcs_token";
 
 export const tokenStore = {

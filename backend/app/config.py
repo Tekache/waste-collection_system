@@ -3,6 +3,7 @@ from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 DEV_ORIGINS = {"http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"}
+PRODUCTION_FRONTEND_ORIGIN = "https://waste-collection-system-n678.vercel.app"
 
 
 class Settings(BaseSettings):
@@ -22,7 +23,7 @@ class Settings(BaseSettings):
     @property
     def cors_origins(self) -> list[str]:
         # Localhost origins only ever reach a developer's own machine, so they stay allowed everywhere.
-        origins = set(DEV_ORIGINS)
+        origins = set(DEV_ORIGINS) | {PRODUCTION_FRONTEND_ORIGIN}
         for origin in self.frontend_url.split(","):
             origin = origin.strip().rstrip("/")
             if origin:
